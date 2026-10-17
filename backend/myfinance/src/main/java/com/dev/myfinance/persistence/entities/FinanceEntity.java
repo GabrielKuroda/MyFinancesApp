@@ -1,12 +1,12 @@
 package com.dev.myfinance.persistence.entities;
 
-import com.dev.myfinance.dto.enums.CategoryEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,19 +18,23 @@ public class FinanceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long operationId;
 
-    @Column(name = "operationDescription")
+    @Column(name = "OPERATION_DESCRIPTION")
     private String operationDescription;
 
-    @Column(name = "operationCategory")
+    @Column(name = "OPERATION_CATEGORY")
     private String operationCategory;
 
-    //ToDo Depois ao criar fluxo de Tags
-//    @Column(name = "tag")
-//    private String tag;
+    @ManyToMany
+    @JoinTable(
+            name = "OPERATION_TAG_JOIN",
+            joinColumns = @JoinColumn(name = "OPERATION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TAG_ID")
+    )
+    private List<TagEntity> operationTag;
 
-    @Column(name = "operationValue")
+    @Column(name = "OPERATION_VALUE")
     private Double operationValue;
 
-    @Column(name = "operationDate")
+    @Column(name = "OPERATION_DATE")
     private LocalDate operationDate;
 }
