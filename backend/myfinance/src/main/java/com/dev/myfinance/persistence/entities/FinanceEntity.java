@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class FinanceEntity {
     private List<TagEntity> operationTag;
 
     @Column(name = "OPERATION_VALUE")
-    private Double operationValue;
+    private BigDecimal operationValue;
 
     @Column(name = "OPERATION_DATE")
     private LocalDate operationDate;
